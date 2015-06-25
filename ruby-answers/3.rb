@@ -21,7 +21,7 @@ def get_largest_factor(number)
 
 	# base case 
 	# factor will be returned when it cannot 
-	# be divided by any other number
+	# be divided by any other number aside from itself
 	return factor if number / factor == 1
 
 	# run method again to find next factor with reduced number
