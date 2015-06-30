@@ -7,40 +7,33 @@ def is_palindrome?(number)
 	number.to_s == number.to_s.reverse
 end
 
-def find_largest_palindrome
-	numbers = (100..999).to_a.reverse
-	max = 0
-	a = 0
-	b = 0
-	count = 0
+# O n^2 solution
+# gets all products of every combination of numbers
+# checks whether product is a palindrome
+# returns largest palindrome
+def find_largest_palindrome(min, max)
+	# get array of all included numbers
+	numbers = (min..max).to_a
+	largest_palindrome = 0
 
+	# iterate through all numbers in array
+	# num will be the first integer to multiply with
 	numbers.each do |num|
+		# iterate through numbers again
+		# num2 is the second number to multiply with
 		numbers.each do |num2|
-			count += 1
 			temp = num * num2
 
-			if is_palindrome?(temp) && temp > max
-				p temp
-				max = temp
-				a = num
-				b = num2
+			# check if product is a palidrome and if it is larger than current largest palindrome
+			# set new largest if applicable
+			if is_palindrome?(temp) && temp > largest_palindrome
+				largest_palindrome = temp
 			end
 
 		end
 	end
-	p count
-	p a
-	p b
-	max
+
+	p	largest_palindrome
 end
 
-# p find_largest_palindrome
-
-
-def list_products(min, max)
-  products = []
-  min.upto(max) {|a| a.upto(max) {|b| products << (a * b)}}
-  return products
-end
-
- list_products(100,999)
+find_largest_palindrome(100, 999)
